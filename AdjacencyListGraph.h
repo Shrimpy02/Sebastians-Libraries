@@ -37,8 +37,8 @@ private:
 	std::vector<std::vector<std::pair<std::shared_ptr<Node>, int>>> vertexes;
 
 	/**
-	 * \brief Smart pointer vector to contain all node references. 
-	 */
+	 * \brief Smart pointer vector to contain all node references.
+	*/
 	std::vector<std::shared_ptr<Node>> nodes;
 
 	/**
