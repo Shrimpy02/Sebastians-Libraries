@@ -24,7 +24,10 @@ public:
 	{
 		int id;
 		int data;
-		Node(int _id, int _data) : id(_id), data(_data) {}
+		int g, h;
+		bool traversable;
+		Node(int _id, int _data = 0, int _g = 0, int _h = 0, bool _traversable = true)
+	 									: id(_id), data(_data), g(_g), h(_h), traversable(_traversable) {}
 	};
 
 	//---------------------  Variables  ---------------------
@@ -36,6 +39,8 @@ private:
 	 */
 	std::vector<std::vector<std::pair<std::shared_ptr<Node>, int>>> vertexes;
 
+public:
+
 	/**
 	 * \brief Smart pointer vector to contain all node references.
 	*/
@@ -46,7 +51,7 @@ private:
 	 */
 	int AmountOfVertexes = 0;
 
-public:
+
 
 	//---------------------  Test Functions  ---------------------
 
@@ -174,9 +179,10 @@ public:
 	 * \param nodeData The Node data is the information the node contains. 
 	 * \return It returns a smart pointer to the new node created.
 	 */
-	std::shared_ptr<Node> CreateNode(int nodeID, int nodeData)
+	std::shared_ptr<Node> CreateNode(int _ID, int _Data = 0, int _g = 0, int _h = 0, bool _traversable = true)
 	{
-		std::shared_ptr<Node> newNode = std::make_shared<Node>(nodeID, nodeData);
+
+		std::shared_ptr<Node> newNode = std::make_shared<Node>(_ID, _Data, _g, _h, _traversable);
 		// Pushes new node reference into a smart pointer vector to keep track of them. 
 		nodes.push_back(newNode);
 		// Calls resize graph as the graph size now increases. 
@@ -490,7 +496,7 @@ public:
 	 * \brief Gets all vertexes (nodes and their edges) in the graph.
 	 * \return linked list containing graph vertex data. 
 	 */
-	std::vector<std::vector<std::pair<std::shared_ptr<Node>, int>>> GetGraphVertexes()
+	std::vector<std::vector<std::pair<std::shared_ptr<Node>, int>>>& GetGraphVertexes()
 	{
 		return vertexes;
 	}
